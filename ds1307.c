@@ -78,16 +78,18 @@ void get_time(void)
   lcdPrint(ptr_min,17,0);
   lcdPrint(":",29,0);
   lcdPrint(ptr_sec,34,0);
-
- 
-  
 }
 
+/**
+  * @brief Converts BCD value to DECIMAL
+  * @param variable is convert to decimal
+  * @retval dec_value;
+  */
 static int bcd_to_dec(uint8_t variable)
 {
     int dec_value = 0;
-    dec_value += (variable & 0x0F); // Sagdaki 4 biti al
-    dec_value += ((variable >> 4) & 0x0F) * 10; // Sol 4 biti al, 10 ile çarp
+    dec_value += (variable & 0x0F); 
+    dec_value += ((variable >> 4) & 0x0F) * 10; 
     return dec_value;
 }
 
@@ -122,53 +124,7 @@ void ds1307_tim_date_set(uint8_t _sec, uint8_t _min, uint8_t _hour, uint8_t _day
   }
 }
 
-void set_sec(uint8_t second)
-{
-  time.sec = second;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Second_addr,(uint16_t)One_byte,&time.sec,(uint16_t)One_byte,HAL_MAX_DELAY);
-}
 
-void set_min(uint8_t minute)
-{
-  time.sec = minute;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Minutes_addr,(uint16_t)One_byte,&time.min,(uint16_t)One_byte,HAL_MAX_DELAY);
-}
-
-void set_hour(uint8_t hour)
-{
-  time.hour = hour;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Hours_addr,(uint16_t)One_byte,&time.hour,(uint16_t)One_byte,HAL_MAX_DELAY);  
-}
-
-void set_day(uint8_t day)
-{
-  date.date = day;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Day_addr,(uint16_t)One_byte,&date.day,(uint16_t)One_byte,HAL_MAX_DELAY);  
-}
-
-void set_date(uint8_t _date)
-{
-  date.date = _date;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Date_addr,(uint16_t)One_byte,&date.date,(uint16_t)One_byte,HAL_MAX_DELAY); 
-}
-
-void set_month(uint8_t _month)
-{
-  date.month = _month;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Month_addr,(uint16_t)One_byte,&date.date,(uint16_t)One_byte,HAL_MAX_DELAY); 
-}
-
-void set_year(uint8_t _year)
-{
-  date.year = _year;
-  HAL_I2C_Mem_Write(&hi2c1,(uint16_t)RTC_Write_Adress,(uint16_t)Year_addr,(uint16_t)One_byte,&date.year,(uint16_t)One_byte,HAL_MAX_DELAY);
-}
-
-/**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
 void I2C1_Init(void)
 {
 
