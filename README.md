@@ -6,4 +6,5 @@ If the time is set and you need to make adjustments again, you should use 'ds130
 
 The 'time_val' variable holds time data.
 
-![Uploading image.png…]()
+
+![ds1307-rtc-ve-24c32-hafiza-karti-10371-44-B](https://github.com/MetehanSimsek/DS1307-RTC-MODUL/assets/71407793/51343279-adfb-43fc-bf78-bff6fddefc06)
